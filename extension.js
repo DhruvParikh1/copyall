@@ -30,6 +30,14 @@ function getFiles(dirPath, filesArr) {
     return filesArr;
 }
 
+function isTextFile(extension) {
+    const textExtensions = [
+        '.txt', '.md', '.json', '.js', '.jsx', '.ts', '.tsx', '.html', '.css', '.scss', '.sass', '.less', '.csv', '.yml', '.yaml', '.xml',
+    ];
+
+    return textExtensions.includes(extension);
+}
+
 function copyFilesToClipboard() {
     const workspaceFolders = vscode.workspace.workspaceFolders;
 
@@ -43,14 +51,19 @@ function copyFilesToClipboard() {
     let clipboardContent = '';
 
     files.forEach((file) => {
-        const relativePath = path.relative(rootPath, file);
-        const fileContent = fs.readFileSync(file, 'utf-8');
-        clipboardContent += `file-name: ${relativePath}\nfile_contents:\n${fileContent}\n\n`;
+        const ext = path.extname(file);
+
+        if (isTextFile(ext)) {
+            const relativePath = path.relative(rootPath, file);
+            const fileContent = fs.readFileSync(file, 'utf-8');
+            clipboardContent += `file-name: ${relativePath}\nfile_contents:\n${fileContent}\n\n`;
+        }
     });
 
     clipboardy.writeSync(clipboardContent);
     vscode.window.showInformationMessage('Copied file names and contents to clipboard');
 }
+
 
 function activate(context) {
     const disposable = vscode.commands.registerCommand('copyFilesToClipboard', copyFilesToClipboard);
