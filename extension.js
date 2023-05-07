@@ -32,7 +32,7 @@ function getFiles(dirPath, filesArr) {
 
 function isTextFile(extension) {
     const textExtensions = [
-        '.txt', '.md', '.json', '.js', '.jsx', '.ts', '.tsx', '.html', '.css', '.scss', '.sass', '.less', '.csv', '.yml', '.yaml', '.xml',
+        '.txt', '.md', '.json', '.js', '.jsx', '.ts', '.tsx', '.html', '.css', '.scss', '.sass', '.less', '.csv', '.yml', '.yaml', '.xml', '.log', '.bat', '.sh', '.py', '.rb', '.cpp', '.c', '.h', '.php', '.pl', '.cs', '.java'
     ];
 
     return textExtensions.includes(extension);
