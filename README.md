@@ -36,8 +36,7 @@ Initial release of copyall.
 
 ---
 
-## For more information
-
-- Check back later.
+## Future Enhancements:
+- Gonna add a UI that will show up inside VSCode to blacklist and whitelist file extensions on the go to make it easier to work with different projects.
 
 **Enjoy!**
